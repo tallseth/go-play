@@ -12,12 +12,12 @@ func main() {
 }
 
 func buildOutputString(i int) string {
-	switch 0 {
-	case i % 15:
+	switch {
+	case i%15 == 0:
 		return "FizzBuzz"
-	case i % 3:
+	case i%3 == 0:
 		return "Fizz"
-	case i % 5:
+	case i%5 == 0:
 		return "Buzz"
 	default:
 		return strconv.FormatInt(int64(i), 10)
