@@ -12,13 +12,14 @@ func main() {
 }
 
 func buildOutputString(i int) string {
-	output := strconv.FormatInt(int64(i), 10)
-	if i%15 == 0 {
-		output = "FizzBuzz"
-	} else if i%3 == 0 {
-		output = "Fizz"
-	} else if i%5 == 0 {
-		output = "Buzz"
+	switch 0 {
+	case i % 15:
+		return "FizzBuzz"
+	case i % 3:
+		return "Fizz"
+	case i % 5:
+		return "Buzz"
+	default:
+		return strconv.FormatInt(int64(i), 10)
 	}
-	return output
 }
