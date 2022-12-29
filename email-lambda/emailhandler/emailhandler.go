@@ -20,10 +20,14 @@ func Null(err error) EmailHandler {
 	return EmailHandler{Email: emailservice.Null(err)}
 }
 
-func (h *EmailHandler) SendEmail(serializedMessage string) error {
-	toSend := ses.SendTemplatedEmailInput{}
+func Unmarshal[T any](raw string) (T, error) {
+	var val T
+	err := json.Unmarshal([]byte(raw), &val)
+	return val, err
+}
 
-	err := json.Unmarshal([]byte(serializedMessage), &toSend)
+func (h *EmailHandler) SendEmail(serializedMessage string) error {
+	toSend, err := Unmarshal[ses.SendTemplatedEmailInput](serializedMessage)
 	if err != nil {
 		return err
 	}
